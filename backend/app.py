@@ -28,7 +28,7 @@ def create_file() -> dict:
             response = create_json_file()
             return (jsonify(response), 201)
     except Exception as e:
-        response = make_response(jsonify(message=e), 400)
+        response = make_response(jsonify(message=str(e)), 400)
         abort(response)
 
 
@@ -46,7 +46,7 @@ def get_all_meals() -> List[dict]:
 
     """
     try:
-        meal_name = str(request.args.get("meal_name", None))
+        meal_name = str(request.args.get("meal_name", ""))
         meal_data = read_meals_file(meal_name)
         return jsonify(meal_data) if meal_name else meal_data
     except Exception as e:
@@ -87,8 +87,10 @@ def bulk_order():
 
     """
     try:
+        if not request.json or "Employees" not in request.json:
+            abort(400)
         order_details = request.json["Employees"]["Employee"]
         return (jsonify(create_bulk_order_data(order_details)), 201)
     except Exception as e:
-        response = make_response(jsonify(message=e), 400)
+        response = make_response(jsonify(message=str(e)), 400)
         abort(response)
