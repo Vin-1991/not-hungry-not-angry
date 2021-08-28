@@ -1,6 +1,5 @@
 from typing import List
-from flask import Flask, request, jsonify, send_file, abort, make_response
-from flask_cors import CORS
+from flask import Flask, request, jsonify, abort, make_response
 from utils import create_json_file, read_meals_file, create_bulk_order_data
 import os
 import config
