@@ -105,8 +105,8 @@ def create_bulk_order_data(order_details: List) -> List[dict]:
     orders_dictionary = {"orders": []}
 
     for order in order_details:
-        get_meal_id = extract_order_details(order["Order"])
-        if order["IsAttending"] == "true" and get_meal_id:
+        meal_items = extract_order_details(order["Order"])
+        if order["IsAttending"] == "true" and meal_items:
             orders_dictionary["orders"] += [
                 {
                     "customer": {
@@ -117,7 +117,7 @@ def create_bulk_order_data(order_details: List) -> List[dict]:
                             "postal_code": order["Address"]["PostalCode"],
                         },
                     },
-                    "items": get_meal_id,
+                    "items": meal_items,
                 }
             ]
 
