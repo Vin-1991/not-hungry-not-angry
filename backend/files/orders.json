@@ -1,0 +1,56 @@
+{
+    "orders": [
+        {
+            "customer": {
+                "name": "Max Mustermann",
+                "address": {
+                    "street": "Musterweg 3",
+                    "city": "Musterhausen",
+                    "postal_code": "12345"
+                }
+            },
+            "items": [
+                {
+                    "id": 3,
+                    "amount": 3
+                }
+            ]
+        },
+        {
+            "customer": {
+                "name": "Al Gore-Rhythm",
+                "address": {
+                    "street": "Fake Street 7",
+                    "city": "Downtown",
+                    "postal_code": "54321"
+                }
+            },
+            "items": [
+                {
+                    "id": 13,
+                    "amount": 1
+                }
+            ]
+        },
+        {
+            "customer": {
+                "name": "Arielle Hassle",
+                "address": {
+                    "street": "Hard Road 13",
+                    "city": "Old York",
+                    "postal_code": "98765"
+                }
+            },
+            "items": [
+                {
+                    "id": 42,
+                    "amount": 1
+                },
+                {
+                    "id": 23,
+                    "amount": 1
+                }
+            ]
+        }
+    ]
+}

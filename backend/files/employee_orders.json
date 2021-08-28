@@ -1,0 +1,46 @@
+{
+  "Employees": {
+    "Employee": [
+      {
+        "Name": "Max Mustermann",
+        "Address": {
+          "Street": "Musterweg 3",
+          "City": "Musterhausen",
+          "PostalCode": "12345"
+        },
+        "IsAttending": "true",
+        "Order": "3x Pizza Quattro Formaggi"
+      },
+      {
+        "Name": "Anna Nym",
+        "Address": {
+          "Street": "Anonymous 4",
+          "City": "Anon City",
+          "PostalCode": "55555"
+        },
+        "IsAttending": "false",
+        "Order": "1x Caesar Salad"
+      },
+      {
+        "Name": "Al Gore-Rhythm",
+        "Address": {
+          "Street": "Fake Street 7",
+          "City": "Downtown",
+          "PostalCode": "Downtown"
+        },
+        "IsAttending": "true",
+        "Order": "1x Kebap"
+      },
+      {
+        "Name": "Arielle Hassle",
+        "Address": {
+          "Street": "Hard Road 13",
+          "City": "Old York",
+          "PostalCode": "98765"
+        },
+        "IsAttending": "true",
+        "Order": "1x Fried Chicken, 1x Caesar Salad"
+      }
+    ]
+  }
+}
