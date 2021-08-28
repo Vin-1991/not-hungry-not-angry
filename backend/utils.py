@@ -48,7 +48,7 @@ def read_meals_file(meal_name: str) -> List[dict]:
     with open(config.FILES_PATH + config.MEAL_JSON_FILE_NAME, "r") as json_file:
         # load the JSON object using json.loads()
         json_data = json.loads(json_file.read())
-        if meal_name == None:
+        if not meal_name:
             return json_data
         else:
             return list(filter(lambda x: x["meal"] == meal_name, json_data["meals"]))
