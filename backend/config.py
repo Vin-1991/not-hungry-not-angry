@@ -1,3 +1,4 @@
+END_POINT = "http://localhost:5000"
 FILES_PATH = "./files/"
 EMP_XML_FILE_NAME = "employee_orders.xml"
 EMP_JSON_FILE_NAME = "employee_orders.json"
