@@ -1,10 +1,9 @@
 __all__ = ["create_json_file", "read_meals_file", "create_bulk_order_data"]
 
 import json
-from typing import List
 import xmltodict
 import config
-from werkzeug.exceptions import HTTPException, NotFound
+from typing import List
 
 
 def create_json_file() -> dict:
@@ -51,6 +50,7 @@ def read_meals_file(meal_name: str) -> List[dict]:
         if not meal_name:
             return json_data
         else:
+            # filter the meal name and return
             return list(filter(lambda x: x["meal"] == meal_name, json_data["meals"]))
 
 
@@ -68,11 +68,14 @@ def extract_order_details(order: List[dict]) -> List[dict]:
 
     order_items = []
 
-    extract_order = order.split(",")
+    extract_order = order.split(",")  # split (,) the items
 
-    order_qty_plus_name = [item.split("x") for item in extract_order]
+    order_qty_plus_name = [
+        item.split("x") for item in extract_order
+    ]  # split (x) the quantity and name of the item
 
     for ordr in order_qty_plus_name:
+        # checks if meal with the name exist or not
         meal_exist = read_meals_file(ordr[1].strip())
         try:
             if not meal_exist:
@@ -80,6 +83,7 @@ def extract_order_details(order: List[dict]) -> List[dict]:
         except Exception as e:
             continue
         else:
+            # create a list of items with their respective Ids and amount.
             order_items += [
                 {
                     "id": meal_exist[0]["id"],
@@ -106,7 +110,9 @@ def create_bulk_order_data(order_details: List) -> List[dict]:
 
     for order in order_details:
         meal_items = extract_order_details(order["Order"])
-        if order["IsAttending"] == "true" and meal_items:
+        if (
+            order["IsAttending"] == "true" and meal_items
+        ):  # skipping the employee order if the employee is not attending and there is no matching meal name found in the list.
             orders_dictionary["orders"] += [
                 {
                     "customer": {
