@@ -53,8 +53,8 @@ def get_all_meals() -> List[dict]:
         return str(e)
 
 
-@app.route("/api/v1/bulk-order", methods=["POST"])
-def bulk_order():
+@app.route("/api/v1/create-bulk-order", methods=["POST"])
+def create_bulk_order():
     """
     API to create the payload format for bulk order API of ("Not Hungry Not Angry")
     from the passed information as payload for ex:-
@@ -77,7 +77,8 @@ def bulk_order():
                 }
         }
 
-    This API can also be used with the Front end.
+    This API can also be used to driectly fetch the Employees data from the employee_orders.json
+    instead of passing the data in the payload manually.
 
     Args:
         None
@@ -86,11 +87,73 @@ def bulk_order():
         List[dict] : list of all Employees and their orders(with Item id).
 
     """
+    import requests
+    import json
+
+    BULK_ORDER_ENDPOINT = config.END_POINT + "/api/v1/bulk/order"
+
     try:
         if not request.json or "Employees" not in request.json:
             abort(400)
+
         order_details = request.json["Employees"]["Employee"]
-        return (jsonify(create_bulk_order_data(order_details)), 201)
+        data = create_bulk_order_data(order_details)
+
+        response = requests.post(
+            BULK_ORDER_ENDPOINT,
+            data=json.dumps(data),
+            headers={"Content-Type": "application/json"},
+        )
+        return (response.content, 201)
+
+    except Exception as e:
+        response = make_response(jsonify(message=str(e)), 400)
+        abort(response)
+
+
+@app.route("/api/v1/bulk/order", methods=["POST"])
+def bulk_order():
+    """
+    Not Hungry Not Angry API to order in bulk
+    Payload format :-
+       {
+        "orders":
+            [
+                {
+                    "customer": {
+                        "address": {
+                            "city": "Musterhausen",
+                            "postal_code": "12345",
+                            "street": "Musterweg 3"
+                        },
+                        "name": "Max Mustermann"
+                    },
+                    "items": [
+                        {
+                            "amount": "3",
+                            "id": "3"
+                        }
+                    ]
+                }
+            ]
+        }
+
+    This API can also be used to directly to order in bulk using the payload created using "create_bulk_order()" API
+
+    Args:
+        None
+
+    Returns:
+        List[dict] : list of all the order placed successfully.
+
+    """
+
+    try:
+        if not request.json or "orders" not in request.json:
+            abort(400)
+        order_details = request.json["orders"]
+        return (jsonify({"order_placed_success": order_details}), 201)
+
     except Exception as e:
         response = make_response(jsonify(message=str(e)), 400)
         abort(response)
