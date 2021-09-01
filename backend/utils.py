@@ -11,7 +11,7 @@ def create_json_file() -> dict:
 
     Utility function : Create a Json file using XML file of employees orders.
 
-    Args:
+    Parameters:
         None
 
     Return Type:
@@ -37,7 +37,7 @@ def read_meals_file(meal_name: str) -> List[dict]:
     """
     Utility function : Read meals from "meals_details.json" and either returns a "full list" or the passed "meal id".
 
-    Args:
+    Parameters:
         - meal_name (str type) : extracted from the employee order
 
     Return Type:
@@ -58,7 +58,7 @@ def extract_order_details(order: List[dict]) -> List[dict]:
     """
     Utility function to extract item id using name of the item.
 
-    Args:
+    Parameters:
         - order (List[dict] type) : details of the order (3x , Pizza).
 
     Return Type:
@@ -98,7 +98,7 @@ def create_bulk_order_data(order_details: List) -> List[dict]:
     """
     Function to create the payload from the order details of the Employees.
 
-    Args:
+    Parameters:
         - order_details (List[dict] type) : details of the employee and his/her order.
 
     Return Type:
