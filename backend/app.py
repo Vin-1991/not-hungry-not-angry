@@ -12,7 +12,7 @@ def create_file() -> dict:
     """
     API to create a file from soruce XML file into JSON format .
 
-    Args:
+    Parameters:
         None
 
     Returns:
@@ -38,7 +38,7 @@ def get_all_meals() -> List[dict]:
     API to get all meals details. Right now getting it from the JSON
     file can be replaced with the actual API URL of ("Not Hungry Not Angry").
 
-    Args:
+    Parameters:
         None
 
     Returns:
@@ -80,7 +80,7 @@ def create_bulk_order():
     This API can also be used to driectly fetch the Employees data from the employee_orders.json
     instead of passing the data in the payload manually.
 
-    Args:
+    Parameters:
         None
 
     Returns:
@@ -140,7 +140,7 @@ def bulk_order():
 
     This API can also be used to directly to order in bulk using the payload created using "create_bulk_order()" API
 
-    Args:
+    Parameters:
         None
 
     Returns:
